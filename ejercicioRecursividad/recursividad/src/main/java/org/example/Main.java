@@ -31,21 +31,20 @@ public class Main {
     }
 
 
-    public static  String[] calcularSucecion (int a1, double dif,  int cantSucecion ){
-
+    public static String[] calcularSucecion(int a1, double dif, int cantSucecion) {
         String[] results = new String[cantSucecion];
-        calcularSucecionRecursiva(a1,dif,cantSucecion, results);
+        calcularSucecionRecursiva(a1, dif, 0, results); // Comenzar desde el primer término
         return results;
-        }
-
-    public static  void calcularSucecionRecursiva (int a1, double dif,  int cantSucecion, String[] results) {
-            if (cantSucecion > 0){
-
-                int resul = (int) (a1 + dif);
-                results[cantSucecion -1] = Integer.toString(resul);
-                cantSucecion = cantSucecion -1;
-                calcularSucecionRecursiva(a1,dif,cantSucecion, results);
-
-            }
     }
+
+    public static void calcularSucecionRecursiva(int a1, double dif, int index, String[] results) {
+        if (index < results.length) {
+            // Calcular el término de la sucesión en la posición 'index'
+            int resul = (int) (a1 + dif * index);
+            results[index] = Integer.toString(resul);
+            // Llamar recursivamente para calcular el siguiente término
+            calcularSucecionRecursiva(a1, dif, index + 1, results);
+        }
+    }
+
 }
